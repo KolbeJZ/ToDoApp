@@ -125,7 +125,7 @@ h1 {
   background: none;
   outline: none;
   border: none;
-  color: #E00;
+  color: rgb(15, 185, 80);
   font-size: 1.4rem;
   font-family: 'Hind', sans-serif;
   cursor: pointer;
@@ -160,7 +160,7 @@ h1 {
   transition: all 0.3s ease;
 }
 .inputField input:focus{
-  border-color: coral;
+  border-color: rgb(15, 185, 80);
 }
 .inputField button{
   width: 100px;
@@ -170,7 +170,7 @@ h1 {
   margin-left: 5px;
   font-size: 15px;
   outline: none;
-  background: blue;
+  background: rgb(50, 50, 197);
   cursor: pointer;
   border-radius: 3px;
   opacity: 0.6;
@@ -179,7 +179,7 @@ h1 {
 }
 .inputField button:hover,
 .footer button:hover{
-  background: coral;
+  background: rgb(15, 185, 80);
 }
 .inputField button.active{
   opacity: 1;
@@ -204,7 +204,7 @@ h1 {
 .todoList li .icon{
   position: absolute;
   right: -45px;
-  background: #e74c3c;
+  background: rgb(142, 73, 232);
   width: 45px;
   text-align: center;
   color: #fff;

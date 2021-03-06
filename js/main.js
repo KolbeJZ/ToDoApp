@@ -2,7 +2,7 @@ const chats = {};
 const message = {}
 const users = [];
 let currentChat;
-
+// me and Kade worked on this project together
 document
   .getElementById('new-chat-button')
   .addEventListener('click', addNewChat);
