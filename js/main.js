@@ -9,7 +9,6 @@ const tasksContainer = document.querySelector('[data-tasks]')
 const taskTemplate = document.getElementById('task-template')
 const newTaskForm = document.querySelector('[data-new-task-form]')
 const newTaskInput = document.querySelector('[data-new-task-input]')
-const editTaskButton = document.querySelector('[data-edit-task-button')
 const clearCompleteTasksButton = document.querySelector('[data-clear-complete-tasks-button]')
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists'
@@ -25,12 +24,32 @@ listsContainer.addEventListener('click', e => {
 })
 
 tasksContainer.addEventListener('click', e => {
+  if (e.target.hasAttribute('data-task-edit-button') === true) {
+    let taskElement = e.target.parentElement;
+    let taskInput = taskElement.querySelector('.task-edit-input')
+    let activeList = lists.find(list => list.id === selectedListId)
+    let activeTask = activeList.tasks.find(task => task.id === taskElement.dataset.taskId)
+    activeTask.edit = true
+    render()
+
+  }
   if (e.target.tagName.toLowerCase() === 'input') {
+    let taskElement = e.target.parentElement;
     const selectedList = lists.find(list => list.id === selectedListId)
-    const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
+    const selectedTask = selectedList.tasks.find(task => task.id === taskElement.dataset.taskId)
     selectedTask.complete = e.target.checked
-    save()
+    console.log('task', selectedTask)
+    saveAndRender()
     renderTaskCount(selectedList)
+  }
+  if (e.target.hasAttribute('data-save-task') === true) {
+    let taskElement = e.target.parentElement;
+    let taskInput = taskElement.querySelector('.task-edit-input')
+    let activeList = lists.find(list => list.id === selectedListId)
+    let activeTask = activeList.tasks.find(task => task.id === taskElement.dataset.taskId)
+    activeTask.name = taskInput.value
+    activeTask.edit = false
+    saveAndRender()
   }
 })
 
@@ -45,6 +64,7 @@ deleteListButton.addEventListener('click', e => {
   selectedListId = null
   saveAndRender()
 })
+
 newListForm.addEventListener('submit', e => {
   e.preventDefault()
   const listName = newListInput.value
@@ -65,19 +85,14 @@ newTaskForm.addEventListener('submit', e => {
   selectedList.tasks.push(task)
   saveAndRender()
 })
-editListButton.addEventListener('click', e => {
-  const taskName = newTaskInput.value
-})
-
 
 function createList(name) {
   return { id: Date.now().toString(), name: name, tasks: [] }
 }
 
 function createTask(name) {
-  return { id: Date.now().toString(), name: name, complete: false }
+  return { id: Date.now().toString(), name: name, complete: false, edit: false }
 }
-
 function saveAndRender() {
   save()
   render()
@@ -106,14 +121,26 @@ function render() {
 
 function renderTasks(selectedList) {
   selectedList.tasks.forEach(task => {
-    const taskElement = document.importNode(taskTemplate.content, true)
-    const checkbox = taskElement.querySelector('input')
+    const documentFragment = document.importNode(taskTemplate.content, true)
+    const taskElement = documentFragment.querySelector('.task')
+    const inputField = taskElement.querySelector('.task-edit-input')
+    taskElement.dataset.taskId = task.id
+    const checkbox = documentFragment.querySelector('input')
     checkbox.id = task.id
     checkbox.checked = task.complete
-    const label = taskElement.querySelector('label')
+    const label = documentFragment.querySelector('label')
     label.htmlFor = task.id
     label.append(task.name)
+    if (task.edit === true) {
+      inputField.value = task.name
+      taskElement.classList.toggle("task--edit");
+    }
     tasksContainer.appendChild(taskElement)
+    if (task.edit === true) {
+      inputField.focus()
+      inputField.select()
+    }
+        
   })
 }
 

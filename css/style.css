@@ -3,7 +3,7 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 300;
     font-size: 20px;
-    background-color: rgb(91, 245, 168);
+    background-color: rgb(214, 159, 240);
     color: rgb(255, 255, 255);
 
     display: grid;
@@ -77,13 +77,9 @@ form {
     top: 50%;
     height: 3px;
     background: currentColor;
-    /* -webkit-transform: scaleX(0); */
             transform: scaleX(0);
-    /* -webkit-transform-origin: right; */
             transform-origin: right;
-    /* transition: -webkit-transform 150ms ease-in-out; */
     transition: transform 150ms ease-in-out;
-    /* transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out; */
   }
 .custom-checkbox {
     size: 10px;
@@ -96,9 +92,7 @@ form {
     border-radius: 50%;
 }
 [type="checkbox"]:checked + label::after {
-    /* -webkit-transform: scaleX(1); */
             transform: scaleX(1);
-    /* -webkit-transform-origin: left; */
             transform-origin: left;
   }
 .delete-tasks {
@@ -111,4 +105,39 @@ form {
     color: white;
     font-weight: 500;
     border: 0;
+}
+button {
+    cursor: pointer;
+}
+.task .save-task-button {
+    display: none;
+}
+.task .task-edit-input {
+    display: none;
+}
+.task .task-checkbox {
+    display: inline;
+}
+.task .edit-task-button {
+    display: inline;
+    background-color:lightblue;
+}
+.task .task-label {
+    display: inline;
+}
+.task--edit .save-task-button {
+    display: inline;
+    background-color: lightgreen;
+}
+.task--edit .task-edit-input {
+    display: inline;
+}
+.task--edit .task-checkbox {
+    display: none;
+}
+.task--edit .edit-task-button {
+    display: none;
+}
+.task--edit .task-label {
+    display: none;
 }
