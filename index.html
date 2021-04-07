@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Todo list</title>
+    <!-- new to do app -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+
+  <body>
+    <h1 class="title">TODO APP</h1>
+
+    <div class="all-tasks">
+      <h2 class="task-list-title">Lists</h2>
+      <form action="" data-new-list-form>
+        <input type="text" class="new list" data-new-list-input placeholder="New List:">
+        <button class="btn create">Add List</button>
+      </form>
+      <ul class="task-list" data-lists></ul>
+
+    </div>
+
+    <div class="todo-list" data-list-display-container>
+      <div class="todo-header">
+        <h2 class="list-title" data-list-title>YouTube</h2>
+        <p class="task-count" data-list-count></p>
+      </div>
+
+      <div class="todo-body">
+          <div class="new-task-creator">
+              <form action="" data-new-task-form>
+                  <input type="text" data-new-task-input class="new task" placeholder="New Task">
+                  <button class="btn create">Add Task:</button>
+                </form>
+          </div>
+        <div class="tasks" data-tasks></div>
+
+
+        <div class="delete-stuff">
+          <button class="btn delete" data-clear-complete-tasks-button>Clear completed tasks</button>
+          <button class="btn delete" data-delete-list-button>Delete list</button>
+        </div>
+      </div>
+    </div>
+
+   
+    </div>
+    <template id="task-template">
+      <div class="task">
+        <button class="btn edit" data-edit-task-button>Edit Task</button>
+        <input type="checkbox" />
+        <label>
+          <span class="custom-checkbox"></span>
+        </label>
+      </div>
+    </template>
+  </body>
+</html>
